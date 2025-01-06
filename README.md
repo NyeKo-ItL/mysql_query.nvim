@@ -7,11 +7,13 @@ A simple Neovim plugin to execute MySQL queries using the contents of a file and
 Using `lazy.nvim`:
 
 ```lua
-{
-    "NyeKo-ItL/mysql_query.nvim",
-    config = function()
-        require("mysql_query").setup()
-    end,
+return {
+    {
+        "NyeKo-ItL/mysql_query.nvim", -- Replace 'your-username' with your GitHub username
+        config = function()
+            require("mysql_query").setup()
+        end,
+    }
 }
 ```
 
