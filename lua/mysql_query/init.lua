@@ -2,10 +2,10 @@ local mysql_query = {}
 
 -- Variable globale pour stocker les informations de connexion MySQL
 _G.mysql_config = {
-	user = "user",    -- Nom d'utilisateur par défaut
+	user = "user",   -- Nom d'utilisateur par défaut
 	password = "root", -- Mot de passe par défaut
 	host = "127.0.0.1", -- Hôte par défaut
-	database = "db",  -- Base de données par défaut
+	database = "db", -- Base de données par défaut
 }
 
 -- Fonction pour exécuter une commande MySQL avec le contenu d'un fichier
