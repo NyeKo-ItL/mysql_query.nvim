@@ -21,9 +21,13 @@ mysql --version
 
 On Linux:
 • Install MySQL client tools using your package manager:
+For Debian/Ubuntu:
 ```bash
-sudo apt-get install mysql-client # For Debian/Ubuntu
-sudo yum install mysql # For CentOS/RHEL
+sudo apt-get install mysql-client
+```
+For CentOS/RHEL
+```bash
+sudo yum install mysql
 ```
 
 Check the installation
