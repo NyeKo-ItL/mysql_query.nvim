@@ -8,6 +8,7 @@ _G.mysql_config = {
 }
 
 local function execute_query(file_path)
+	file_path = file_path:gsub("\\", "/")
 	local command = string.format(
 		"mysql -u%s -p%s -h%s -D%s -e 'source %s'",
 		_G.mysql_config.user,
