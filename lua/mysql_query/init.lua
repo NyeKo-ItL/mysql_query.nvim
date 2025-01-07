@@ -17,11 +17,15 @@ local function execute_query(file_path)
 		_G.mysql_config.database
 	)
 
-	local command = string.format(
-		"mysql --sql --uri='%s' --file=%s",
-		uri,
-		file_path
-	)
+local command = string.format(
+    'mysql -u%s -p%s -h%s -D%s -e "source %s"',
+    _G.mysql_config.user,
+    _G.mysql_config.password,
+    _G.mysql_config.host,
+    _G.mysql_config.database,
+    file_path
+)
+
 
 	local handle = io.popen(command .. " 2>&1")
 	local result = handle:read("*a")
