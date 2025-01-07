@@ -9,12 +9,17 @@ _G.mysql_config = {
 
 local function execute_query(file_path)
 	file_path = file_path:gsub("\\", "/")
-	local command = string.format(
-		"mysql -u%s -p%s -h%s -D%s -e 'source %s'",
+	local uri = string.format(
+		"mysql://%s:%s@%s/%s",
 		_G.mysql_config.user,
 		_G.mysql_config.password,
 		_G.mysql_config.host,
-		_G.mysql_config.database,
+		_G.mysql_config.database
+	)
+
+	local command = string.format(
+		"mysqlsh --sql --uri='%s' --file=%s",
+		uri,
 		file_path
 	)
 
@@ -23,6 +28,7 @@ local function execute_query(file_path)
 	handle:close()
 	return result
 end
+
 
 local function display_popup(content)
 	local buf = vim.api.nvim_create_buf(false, true)
