@@ -8,29 +8,24 @@ _G.mysql_config = {
 }
 
 local function execute_query(file_path)
-	file_path = file_path:gsub("\\", "/")
-	local uri = string.format(
-		"mysql://%s:%s@%s/%s",
-		_G.mysql_config.user,
-		_G.mysql_config.password,
-		_G.mysql_config.host,
-		_G.mysql_config.database
-	)
+    -- Corrige les chemins sous Windows
+    file_path = file_path:gsub("\\", "/")
 
-local command = string.format(
-    'mysql -u%s -p%s -h%s -D%s -e "source %s"',
-    _G.mysql_config.user,
-    _G.mysql_config.password,
-    _G.mysql_config.host,
-    _G.mysql_config.database,
-    file_path
-)
+    -- Construire la commande sans inclure le mot de passe directement
+    local command = string.format(
+        'mysql -u%s -p%s -h%s -D%s < "%s"',
+        _G.mysql_config.user,
+        _G.mysql_config.password,
+        _G.mysql_config.host,
+        _G.mysql_config.database,
+        file_path
+    )
 
-
-	local handle = io.popen(command .. " 2>&1")
-	local result = handle:read("*a")
-	handle:close()
-	return result
+    -- Exécuter la commande
+    local handle = io.popen(command .. " 2>&1") -- Rediriger les erreurs standard
+    local result = handle:read("*a")
+    handle:close()
+    return result
 end
 
 
