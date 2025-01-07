@@ -18,7 +18,7 @@ local function execute_query(file_path)
 	)
 
 	local command = string.format(
-		"mysqlsh --sql --uri='%s' --file=%s",
+		"mysql --sql --uri='%s' --file=%s",
 		uri,
 		file_path
 	)
